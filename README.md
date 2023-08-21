@@ -10,17 +10,17 @@ The `ExceptionHandlingContract` is a Solidity smart contract illustrating the pr
 
 ### Functions
 
-#### `setValue(uint256 _newValue)`
+#### `updateValue(uint256 _newnum)`
 
 This function updates the `value` variable with a new value. It employs the `require()` statement to ensure the new value is greater than zero. Failure to meet this condition results in the transaction being reverted, accompanied by a custom error message.
 
-#### `getValue()`
+#### `getCurrentValue()`
 
-This function retrieves the current value stored in the `value` variable.
+This function retrieves the current value stored in the `Currentvalue` variable.
 
-#### `performOperation(uint256 _amount)`
+#### `removeAmount(uint256 _amount)`
 
-The `performOperation` function executes an operation that subtracts a specified amount from the `value` variable. It uses the `assert()` statement to confirm that the provided amount is less than or equal to the current value. In case this condition is not met, the transaction is reverted. Additionally, if the operation leads to the `value` becoming zero, the transaction is explicitly reverted, accompanied by an informative error message.
+The `removeOperation` function executes an operation that subtracts a specified amount from the `value` variable. It uses the `assert()` statement to confirm that the provided amount is less than or equal to the current value. In case this condition is not met, the transaction is reverted. Additionally, if the operation leads to the `value` becoming zero, the transaction is explicitly reverted, accompanied by an informative error message.
 
 ### Usage
 
