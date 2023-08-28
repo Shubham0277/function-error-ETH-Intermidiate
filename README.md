@@ -1,53 +1,41 @@
 # function-error-ETH-Intermidiate
 
-## ExceptionHandlingContract
+## CustomErrorHandling Smart Contract
 
-The `ExceptionHandlingContract` is a Solidity smart contract illustrating the practical application of `require()`, `assert()`, and `revert()` statements for efficient exception handling in Ethereum smart contract development.
+The CustomErrorHandling smart contract is a simple Solidity contract that demonstrates error handling mechanisms using require, assert, and revert statements. These mechanisms are crucial for ensuring the correctness and security of Ethereum smart contracts.
 
-### Contract Specifications
+# Functions and Error Handling
 
-- Solidity Version: ^0.8.0
+## checkGreaterThanZero(uint256 number)
+Checks if the provided number is greater than zero using require.
+If the condition is not met, it reverts the transaction with the error message "Number must be greater than zero."
+Returns the result of number multiplied by 4 if the condition is met.
 
-### Functions
+## validateNotZero(uint256 number)
+Validates that the provided number is not zero using assert.
+If number is equal to zero, it triggers an assertion failure and reverts the transaction.
+Returns the result of number plus 2 if the assertion is successful.
 
-#### `updateValue(uint256 _newnum)`
+## checkNotAllowed(uint256 number)
+Checks if the provided number is equal to 7 using an if statement.
+If number is 7, it explicitly reverts the transaction with the error message "7 is not allowed."
+Returns the result of number minus 1 if it's not equal to 7.
 
-This function updates the `value` variable with a new value. It employs the `require()` statement to ensure the new value is greater than zero. Failure to meet this condition results in the transaction being reverted, accompanied by a custom error message.
+## intentionallyTriggerErrors()
+This function is designed to intentionally trigger the error-handling functions in the contract.
+Calls checkGreaterThanZero(0) to trigger a require error because it passes 0, which is not greater than zero.
+Calls validateNotZero(0) to trigger an assert error because it passes 0, which is equal to zero.
+Calls checkNotAllowed(88) to trigger a revert error because it passes 88, which is explicitly checked for and not allowed in the checkNotAllowed function.
 
-#### `getCurrentValue()`
+## Usage
+To use the CustomErrorHandling contract, you can deploy it on the Ethereum blockchain using a development environment like Remix or Truffle. Once deployed, you can interact with the contract using Ethereum addresses and transactions.
 
-This function retrieves the current value stored in the `Currentvalue` variable.
+## Error Handling Best Practices
+Error handling is a critical aspect of smart contract development. Here are some best practices:
+Use require for input validation and to check preconditions.
+Use assert to validate internal invariants that should never be false.
+Use revert for custom error messages and state reversion.
+Always provide clear and informative error messages to assist users and developers in understanding contract failures.
 
-#### `removeAmount(uint256 _amount)`
-
-The `removeOperation` function executes an operation that subtracts a specified amount from the `value` variable. It uses the `assert()` statement to confirm that the provided amount is less than or equal to the current value. In case this condition is not met, the transaction is reverted. Additionally, if the operation leads to the `value` becoming zero, the transaction is explicitly reverted, accompanied by an informative error message.
-
-### Usage
-
-1. Compile the smart contract using a Solidity compiler compatible with version ^0.8.0.
-
-2. Deploy the contract onto your chosen Ethereum network.
-
-3. Engage with the deployed contract through its provided functions (`setValue()`, `getValue()`, `performOperation()`).
-
-### Development
-
-1. Clone the project repository.
-
-2. Install the necessary dependencies.
-
-3. Customize the contract or create new contracts as per your project requirements.
-
-4. Thoroughly test the contract using a testing framework like Truffle or Hardhat.
-
-5. Compile and deploy the contract to your targeted Ethereum network.
-
-6. Don't forget to update the readme file with pertinent details specific to your project.
-
-### Contributing
-
-We warmly welcome contributions to the `ExceptionHandlingContract`. Whether you've identified a bug, have suggestions for enhancements, or wish to introduce new features, please feel free to either open an issue or submit a pull request.
-
-### License
-
-This project operates under the [MIT License](LICENSE).
+# License
+This project is licensed under the MIT License. You can find the license details in the LICENSE file.
